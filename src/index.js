@@ -81,7 +81,8 @@ export default class Swipeable extends PureComponent {
     leftButtonContainerStyle: ViewPropTypes.style,
     rightContainerStyle: ViewPropTypes.style,
     rightButtonContainerStyle: ViewPropTypes.style,
-    contentContainerStyle: ViewPropTypes.style
+    contentContainerStyle: ViewPropTypes.style,
+    maxSwipeDistance: PropTypes.number
   };
 
   static defaultProps = {
@@ -98,6 +99,7 @@ export default class Swipeable extends PureComponent {
     leftActionActivationDistance: 125,
     leftActionReleaseAnimationFn: null,
     leftActionReleaseAnimationConfig: null,
+    maxSwipeDistance: Infinity,
 
     // right action lifecycle
     onRightActionActivate: noop,
@@ -231,7 +233,8 @@ export default class Swipeable extends PureComponent {
       onRightActionDeactivate,
       onRightButtonsActivate,
       onRightButtonsDeactivate,
-      onSwipeMove
+      onSwipeMove,
+      maxSwipeDistance
     } = this.props;
     const {
       lastOffset,
@@ -240,7 +243,12 @@ export default class Swipeable extends PureComponent {
       rightActionActivated,
       rightButtonsActivated
     } = this.state;
-    const {dx, vx} = gestureState;
+    const {dx, vx, moveX, x0} = gestureState;
+
+    if (Math.abs(x0-moveX) >= maxSwipeDistance) {
+      return;
+    }
+
     const x = dx + lastOffset.x;
     const canSwipeRight = this._canSwipeRight();
     const canSwipeLeft = this._canSwipeLeft();

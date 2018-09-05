@@ -1,6 +1,6 @@
 {
-  "name": "react-native-swipeable",
-  "version": "0.6.0",
+  "name": "@decor/react-native-swipeable",
+  "version": "0.0.1",
   "description": "A powerful React Native swipe component",
   "main": "lib/index.js",
   "scripts": {
@@ -22,13 +22,16 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0"
   },
+  "publishConfig": {
+    "registry": "http://18.196.24.199:4873"
+  },
   "peerDependencies": {
     "react": ">=15.2.0",
     "react-native": ">=0.44.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jshanson7/react-native-swipeable.git"
+    "url": "git+https://github.com/DecorWeb/react-native-swipeable.git"
   },
   "keywords": [
     "react",
